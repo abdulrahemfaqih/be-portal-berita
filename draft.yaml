@@ -1,0 +1,13 @@
+models:
+  Post:
+    title: string:100
+    content: text
+    user_id: foreign
+    relationships:
+      hasMany: Coment
+
+  Comment:
+    post_id: foreign
+    user_id: foreign
+    content: text
+
