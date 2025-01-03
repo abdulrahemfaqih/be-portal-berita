@@ -30,15 +30,19 @@ class AuthenticationController extends Controller
     }
 
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'message' => 'Logout berhasil'
         ]);
     }
 
-    public function profile() {
+    public function profile()
+    {
         $user = auth()->user()->load("post");
-        return new ProfileResource($user);
+        return (new ProfileResource($user))
+            ->response()
+            ->setStatusCode(200);
     }
 }
