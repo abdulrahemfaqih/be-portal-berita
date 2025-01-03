@@ -22,10 +22,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            "user_id" => User::factory(),
-            "post_id" => Post::factory(),
-            "content" => fake()->paragraph()
-
+            "content" => fake()->paragraph(),
+            "user_id" => fn() => User::inRandomOrder()->first()?->id ?? User::factory(),
+            "post_id" => fn() => Post::inRandomOrder()->first()?->id ?? Post::factory()
         ];
     }
 }

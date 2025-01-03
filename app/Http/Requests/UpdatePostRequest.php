@@ -23,16 +23,20 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             "title" => "sometimes|required|max:200",
-            "content" => "sometimes|required"
+            "content" => "sometimes|required",
+            "image" => "sometimes|file|image|max:2048"
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'title.required' => 'Judul wajib diisi',
-            'title.max' => 'Judul tidak boleh lebih dari 200 karakter',
+            'title.max' => 'Judul maksimal 200 karakter',
             'content.required' => 'Konten wajib diisi',
+            'image.file' => 'File harus berupa gambar',
+            'image.image' => 'File harus berupa format gambar (jpg, png, dll)',
+            'image.max' => 'Ukuran gambar maksimal 2MB'
         ];
     }
 }

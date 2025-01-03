@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         User::factory(3)
             ->has(
                 Post::factory(5)
-                ->has(
-                    Comment::factory(5)
-                )
+                    ->has(
+                        Comment::factory(10)
+                    )
             )->create();
     }
 }

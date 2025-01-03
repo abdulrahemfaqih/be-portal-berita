@@ -5,19 +5,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\AuthenticationController;
-
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
-
-
+use App\Http\Controllers\CommentController;
 
 Route::middleware(["auth:sanctum"])->group(function () {
     Route::get("/logout", [AuthenticationController::class, "logout"]);
     Route::get("/profile", [AuthenticationController::class, "profile"]);
+    // route postingan
     Route::post("/posts", [PostController::class, "store"]);
-    Route::patch("/posts/{id}", [PostController::class, "update"])->middleware("check.post.ownership");
+    Route::post("/posts/{id}", [PostController::class, "update"])->middleware("check.post.ownership");
     Route::delete("/posts/{id}", [PostController::class, "destroy"])->middleware("check.post.ownership");
+    // route comment
+    Route::post("/comment", [CommentController::class, "store"]);
+    Route::patch("/comment/{id}", [CommentController::class, "update"])->middleware("check.comment.ownership");
+    Route::delete("/comment/{id}", [CommentController::class, "destroy"])->middleware("check.comment.ownership");
 });
 
 Route::post("/login", [AuthenticationController::class, "login"]);

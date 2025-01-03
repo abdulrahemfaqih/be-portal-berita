@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckCommentOwnership;
 use App\Http\Middleware\CheckPostOwnership;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,7 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            "check.post.ownership" => CheckPostOwnership::class
+            "check.post.ownership" => CheckPostOwnership::class,
+            "check.comment.ownership" => CheckCommentOwnership::class
         ]);
 
     })

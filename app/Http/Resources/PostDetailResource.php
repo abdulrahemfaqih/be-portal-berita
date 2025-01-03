@@ -17,9 +17,13 @@ class PostDetailResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
+            "image_path" => $this->path_image,
             "content" => $this->content,
             "created_at" => $this->created_at->format("Y-m-d"),
-            "author" => $this->whenLoaded("user")
+            "author_id" => $this->user_id,
+            "author" => $this->whenLoaded("user"),
+            "comments" => CommentResoure::collection($this->whenLoaded("comment")),
+            "totalComment" => $this->comment_count
         ];
     }
 }

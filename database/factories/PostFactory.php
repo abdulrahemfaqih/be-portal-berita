@@ -23,7 +23,8 @@ class PostFactory extends Factory
         return [
             "title" => fake()->sentence(),
             "content" => fake()->paragraph(3, true),
-            "user_id" => User::factory()
+            "user_id" => fn() => User::inRandomOrder()->first()?->id ?? User::factory(),
+
         ];
     }
 }
