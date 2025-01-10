@@ -19,7 +19,7 @@ Route::middleware(["auth:sanctum"])->group(function () {
     Route::patch("/comment/{id}", [CommentController::class, "update"])->middleware("check.comment.ownership");
     Route::delete("/comment/{id}", [CommentController::class, "destroy"])->middleware("check.comment.ownership");
 });
-
+Route::post("/register", [AuthenticationController::class, "register"]);
 Route::post("/login", [AuthenticationController::class, "login"]);
 Route::get("/posts", [PostController::class, "index"]);
 Route::get("/posts/{id}", [PostController::class, "show"]);

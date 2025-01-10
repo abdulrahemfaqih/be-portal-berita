@@ -5,12 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\ProfileResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticationController extends Controller
 {
+
+    public function register(RegisterRequest $request) {
+        $request->validated();
+        $password = $request->password;
+        $hashedPassword = Hash::make($password);
+
+        $user = User::create([
+            "username" => $request->username,
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => $hashedPassword
+        ]);
+
+        return response()->json([
+            "message" => "Registrasi berhasil"
+        ], 201);
+    }
+
     public function login(LoginRequest $request)
     {
         $request->validated();
