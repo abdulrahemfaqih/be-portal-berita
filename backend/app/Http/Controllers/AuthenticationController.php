@@ -26,7 +26,7 @@ class AuthenticationController extends Controller
         ]);
 
         return response()->json([
-            "message" => "Registrasi berhasil"
+            "message" => "Registrasi berhasil",
         ], 201);
     }
 

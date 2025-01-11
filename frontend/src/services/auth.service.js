@@ -1,10 +1,20 @@
-import { api } from "../lib/axios";
+import api from './axios';
 
-export const register = async (data) => {
-    try {
-        const response = await api.post("/register", data)
-        return response.data
-    } catch (error) {
-        return error
+class AuthService {
+    async register(userData) {
+        try {
+            const response = await api.post('/register', userData);
+            return response.data;
+        } catch (error) {
+            if (error.response?.status === 422) {
+                throw {
+                    status: 422,
+                    errors: error.response.data.errors
+                };
+            }
+            throw error;
+        }
     }
 }
+
+export const authService = new AuthService();
