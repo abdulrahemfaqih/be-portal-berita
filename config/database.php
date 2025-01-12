@@ -48,7 +48,7 @@ return [
             'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'portal_berita'),
-            'username' => env('DB_USERNAME', 'faqih3935'),
+            'username' => env('DB_USERNAME', 'password'),
             'password' => env('DB_PASSWORD', 'password'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
