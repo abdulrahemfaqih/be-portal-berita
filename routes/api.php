@@ -9,7 +9,7 @@ use App\Http\Controllers\CommentController;
 
 Route::middleware(["auth:sanctum"])->group(function () {
     Route::get("/logout", [AuthenticationController::class, "logout"]);
-    Route::get("/profile", [AuthenticatioanController::class, "profile"]);
+    Route::get("/profile", [AuthenticationController::class, "profile"]);
     // route postingan
     Route::post("/posts", [PostController::class, "store"]);
     Route::post("/posts/{id}", [PostController::class, "update"])->middleware("check.post.ownership");
